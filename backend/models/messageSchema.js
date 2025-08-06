@@ -12,7 +12,7 @@ const messageSchema = new mongoose.Schema({
         required: true,
         minLength: [3, "first last must contain at least 3 characters"]
     },
-     email: {
+    email: {
         type: String,
         required: true,
         validate : [validator.isEmail,"please provide a valid email"]
