@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post("/send",sendMessage);
 router.get("/getall", isAdminAuthenticated, getAllMessages);
+router.get("/getall", isAdminAuthenticated, getAllMessages);
 
 export default router;
