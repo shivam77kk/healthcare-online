@@ -101,6 +101,32 @@ export const login = catchAsyncErrors(async (req, res, next) => {
     role: "Admin",
   });
 
-  // ✅ Send token + response
   generateToken(admin, "New Admin created successfully", 201, res);
+});
+
+
+export const getAllDoctors = catchAsyncErrors(async (req, res, next) => {
+  const doctors = await User.find({ role: "Doctor" });
+  res.status(200).json({
+    success: true,
+    doctors,
+  });
+});
+
+export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = req.user;
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+export const logoutAdmin = catchAsyncErrors(async (req, res, next) => {
+  res.status(200).cookie("adminToken","",{
+    expires: new Date(Date.now()),
+    httpOnly: true,
+  }).json({
+    success: true,
+    message: "Logged out successfully",
+  });
 });
